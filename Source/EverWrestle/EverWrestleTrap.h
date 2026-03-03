@@ -19,7 +19,7 @@ protected:
 	
 	// World Interaction Configuration
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "InGame | World Interaction")
-	UAnimationAsset* TrapAnimation;
+	TObjectPtr<UAnimationAsset> TrapAnimation;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "InGame | World Interaction")
 	float KnockedOutDuration = 3.f;

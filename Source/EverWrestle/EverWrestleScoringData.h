@@ -33,5 +33,5 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "InGame | Scoring & Progression", meta = (AllowPrivateAccess = "true"))
 	TMap<uint8, int32> KnockoutPointsMap;
 	
-	int32 GetPointsOutOfMap(TMap<uint8, int32> MapToCheck, uint8 Num) const;
+	int32 GetPointsOutOfMap(const TMap<uint8, int32>& MapToCheck, uint8 Num) const;
 };

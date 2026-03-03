@@ -20,7 +20,7 @@ protected:
 
 	// Player Input Configuration
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category ="InGame | Player Input")
-	TArray<UInputMappingContext*> DefaultMappingContexts;
+	TArray<TObjectPtr<UInputMappingContext>> DefaultMappingContexts;
 	
 private:
 	// Internal Logistics

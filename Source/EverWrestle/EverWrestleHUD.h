@@ -26,5 +26,5 @@ public:
 	
 protected:
 	UPROPERTY(BlueprintReadWrite, Category = "InGame | UI Management")
-	UUserWidget* CurrentGameHUD;
+	TObjectPtr<UUserWidget> CurrentGameHUD;
 };

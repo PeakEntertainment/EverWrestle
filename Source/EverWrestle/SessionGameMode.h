@@ -21,5 +21,5 @@ public:
 private:
 	// Configuration
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "InGame | Round Management", meta = (AllowPrivateAccess = "true"))
-	UEverWrestleMapData* MapData;
+	TObjectPtr<UEverWrestleMapData> MapData;
 };

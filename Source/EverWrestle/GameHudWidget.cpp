@@ -21,7 +21,6 @@ void UGameHudWidget::NativeConstruct()
 		CachedGameState->OnRoundStarted.AddUniqueDynamic(this, &UGameHudWidget::OnRoundStarted);
 		CachedGameState->OnRoundTimeSynchronizationRequest.AddUniqueDynamic(this, &UGameHudWidget::UpdateRoundTimerDisplay);
 		CachedGameState->OnRoundNumberChanged.AddUniqueDynamic(this, &UGameHudWidget::UpdateRoundNumberDisplay);
-		OnRoundSecondOverDelegate.AddUniqueDynamic(this, &UGameHudWidget::UpdateRoundTimerDisplay);
 		
 		float Remaining = CachedGameState->GetCurrentRoundTime();
 		if (Remaining > 0.f)
@@ -29,6 +28,16 @@ void UGameHudWidget::NativeConstruct()
 			OnRoundStarted(Remaining);
 		}
 	}
+}
+
+void UGameHudWidget::NativeDestruct()
+{
+	if (CachedGameState)
+	{
+		CachedGameState->OnRoundStarted.RemoveDynamic(this, &UGameHudWidget::OnRoundStarted);
+	}
+	
+	UUserWidget::NativeDestruct();
 }
 
 void UGameHudWidget::SynchronizeTimerWithServer(const float ServerTime)

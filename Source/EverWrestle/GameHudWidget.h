@@ -8,8 +8,6 @@
 
 class AEverWrestleGameState;
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnRoundSecondOver, float, CurrentTime);
-
 UCLASS()
 class EVERWRESTLE_API UGameHudWidget : public UUserWidget
 {
@@ -17,6 +15,7 @@ class EVERWRESTLE_API UGameHudWidget : public UUserWidget
 	
 public:
 	virtual void NativeConstruct() override;
+	void NativeDestruct() override;
 	
 protected:
 	// UI Management
@@ -42,9 +41,6 @@ private:
 	
 	UFUNCTION()
 	void EndRound() const;
-
-	UPROPERTY(BlueprintAssignable, Category="InGame | UI Management", meta = (AllowPrivateAccess = "true"))
-	FOnRoundSecondOver OnRoundSecondOverDelegate;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="InGame | UI Management", meta = (AllowPrivateAccess = "true", Units = "s"))
 	float MinSynchronizationDiff = 0.5f;

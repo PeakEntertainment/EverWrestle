@@ -33,7 +33,7 @@ private:
 
 	// Components
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "InGame | World Interaction", meta = (AllowPrivateAccess = "true"))
-	USkeletalMeshComponent* TrapMesh;
+	TObjectPtr<USkeletalMeshComponent> TrapMesh;
 	
 	// State
 	UPROPERTY(Replicated, BlueprintReadOnly, Category = "InGame | World Interaction", meta = (AllowPrivateAccess = "true"))

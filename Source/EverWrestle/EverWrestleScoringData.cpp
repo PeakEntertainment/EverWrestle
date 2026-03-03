@@ -3,26 +3,26 @@
 
 #include "EverWrestleScoringData.h"
 
-int32 UEverWrestleScoringData::GetPointsForPlacement(uint8 Placement)
+int32 UEverWrestleScoringData::GetPointsForPlacement(const uint8 Placement)
 {
 	return GetPointsOutOfMap(PlacementPointsMap, Placement);
 }
 
-int32 UEverWrestleScoringData::GetPointsForKnockout(uint8 Knockouts)
+int32 UEverWrestleScoringData::GetPointsForKnockout(const uint8 Knockouts)
 {
 	return GetPointsOutOfMap(KnockoutPointsMap, Knockouts);
 }
 
-int32 UEverWrestleScoringData::GetPointsOutOfMap(TMap<uint8, int32> MapToCheck, uint8 Num) const
+int32 UEverWrestleScoringData::GetPointsOutOfMap(const TMap<uint8, int32>& MapToCheck, uint8 Num) const
 {
-	Num = FMath::Clamp(Num, 1, MapToCheck.Num());
+	if (MapToCheck.IsEmpty()) return 0;
+	
+	Num = FMath::Clamp(Num, 1, static_cast<uint8>(MapToCheck.Num()));
 	
 	if (const int32 FoundPoints = MapToCheck.FindRef(Num))
 	{
 		return FoundPoints;
 	}
-	else
-	{
-		return 0;
-	}
+	
+	return 0;
 }

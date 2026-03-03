@@ -31,9 +31,14 @@ UAsyncCreateSessionProxy* UAsyncCreateSessionProxy::CreateSessionAsync(UObject* 
 
 void UAsyncCreateSessionProxy::Activate()
 {
-	if (!WorldContext) OnFailure.Broadcast();
-	
-	UGameInstance* GI = WorldContext->GetWorld()->GetGameInstance();
+	if (UWorld* World = WorldContext->GetWorld(); !WorldContext.IsValid() || !IsValid(World))
+	{
+		OnFailure.Broadcast();
+		SetReadyToDestroy();
+		return;
+	}
+
+	const UGameInstance* GI = WorldContext->GetWorld()->GetGameInstance();
 
 	if (UAdvancedSessionSubsystem* SessionSubsystem = GI->GetSubsystem<UAdvancedSessionSubsystem>())
 	{
@@ -49,9 +54,9 @@ void UAsyncCreateSessionProxy::Activate()
 
 void UAsyncCreateSessionProxy::HandleSystemCallback(bool bWasSuccessful)
 {
-	if (WorldContext)
+	if (WorldContext.IsValid())
 	{
-		if (UGameInstance* GI = WorldContext->GetWorld()->GetGameInstance())
+		if (const UGameInstance* GI = WorldContext->GetWorld()->GetGameInstance())
 		{
 			if (UAdvancedSessionSubsystem* SessionSubsystem = GI->GetSubsystem<UAdvancedSessionSubsystem>())
 			{

@@ -147,8 +147,10 @@ void AEverWrestleCharacter::Server_ResetToLastCheckpoint_Implementation()
 
 void AEverWrestleCharacter::RequestPointsForKnockout_Implementation()
 {
-	if (AEverWrestleGameMode* GM = Cast<AEverWrestleGameMode>(GetWorld()->GetAuthGameMode()))
+	APlayerController* PC = GetController<APlayerController>();
+	
+	if (AEverWrestleGameMode* GM = Cast<AEverWrestleGameMode>(GetWorld()->GetAuthGameMode()); GM && PC)
 	{
-		GM->AddPointsForKnockout(this, CurrentKnockouts);
+		GM->AddPointsForKnockout(PC, CurrentKnockouts);
 	}
 }

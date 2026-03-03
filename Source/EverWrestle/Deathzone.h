@@ -22,5 +22,5 @@ protected:
 private:
 	// World Interaction Components
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "InGame | World Interaction", meta = (AllowPrivateAccess = "true"))
-	UBoxComponent* BoxCollision;
+	TObjectPtr<UBoxComponent> BoxCollision;
 };
