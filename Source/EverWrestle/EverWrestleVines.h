@@ -22,10 +22,10 @@ protected:
 private:
 	// Components
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "InGame | World Interaction", meta = (AllowPrivateAccess = "true"))
-	UStaticMeshComponent* MeshComponent;
+	TObjectPtr<UStaticMeshComponent> MeshComponent;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "InGame | World Interaction", meta = (AllowPrivateAccess = "true"))
-	UBoxComponent* BoxCollision;
+	TObjectPtr<UBoxComponent> BoxCollision;
 	
 	// Combat & Health Configuration
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "InGame | Combat & Health", meta = (AllowPrivateAccess = "true", Units = "s"))

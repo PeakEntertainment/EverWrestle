@@ -30,7 +30,7 @@ private:
 	UFUNCTION()
 	void HandleSystemCallback(bool bWasSuccessful);
 	
-	UObject* WorldContext;
+	TWeakObjectPtr<UObject> WorldContext;
 	int32 InternalMaxPlayers;
 	bool InternalIsLan;
 	bool InternalAllowInvites;

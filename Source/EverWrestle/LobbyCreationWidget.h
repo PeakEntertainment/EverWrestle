@@ -27,5 +27,5 @@ private:
 	uint8 MaxPasswordLength = 15;
 
 	UPROPERTY()
-	UAdvancedSessionSubsystem* SessionSubsystem;
+	TObjectPtr<UAdvancedSessionSubsystem> SessionSubsystem;
 };

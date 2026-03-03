@@ -53,6 +53,8 @@ public:
 
 	// Steam Services
 	UFUNCTION(BlueprintCallable, Category="Networking | Steam Services")
+	void RestartSteamSubsystem();
+	UFUNCTION(BlueprintCallable, Category="Networking | Steam Services")
 	FText GetSteamName(const APlayerState* PlayerState) const;
 	
 	UFUNCTION(BlueprintCallable, Category="Networking | Steam Services")

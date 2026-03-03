@@ -1,5 +1,6 @@
 #include "AdvancedSessionSubsystem.h"
 
+#include "AdvancedSteamFriendsLibrary.h"
 #include "BlueprintDataDefinitions.h"
 #include "FindSessionsCallbackProxy.h"
 #include "OnlineSubsystem.h"
@@ -46,6 +47,11 @@ void UAdvancedSessionSubsystem::CreateGameSession(const int32 MaxPlayers, bool b
     
     CreateSessionsHandle = SessionInterface->AddOnCreateSessionCompleteDelegate_Handle(
         FOnCreateSessionCompleteDelegate::CreateUObject(this, &UAdvancedSessionSubsystem::HandleCreateSessionComplete));
+    
+    if (SessionInterface->GetNamedSession(NAME_GameSession))
+    {
+        SessionInterface->DestroySession(NAME_GameSession);
+    }
     
     SessionInterface->CreateSession(0, NAME_GameSession, Settings);
 }
@@ -161,6 +167,14 @@ void UAdvancedSessionSubsystem::GetSessionProperty(const FBlueprintSessionResult
     
     Value = TEXT("");
     Outcome = EPropertyOutcome::Invalid;
+}
+
+void UAdvancedSessionSubsystem::RestartSteamSubsystem()
+{
+    if (SteamAPI_RestartAppIfNecessary(480))
+    {
+        FGenericPlatformMisc::RequestExit(false);
+    }
 }
 
 void UAdvancedSessionSubsystem::GetCurrentSession(FBlueprintSessionResult& SessionResult, ESessionValidOutcome& Outcome)

@@ -13,12 +13,16 @@ UAsyncJoinSessionProxy* UAsyncJoinSessionProxy::JoinSessionAsync(UObject* WorldC
 
 void UAsyncJoinSessionProxy::Activate()
 {
-	if (!WorldContext) OnFailure.Broadcast();
-	
-	UGameInstance* GI = WorldContext->GetWorld()->GetGameInstance();
-	UAdvancedSessionSubsystem* SessionSubsystem = GI->GetSubsystem<UAdvancedSessionSubsystem>();
-	
-	if (SessionSubsystem)
+	if (UWorld* World = WorldContext->GetWorld(); !WorldContext.IsValid() || !IsValid(World))
+	{
+		OnFailure.Broadcast();
+		SetReadyToDestroy();
+		return;
+	}
+
+	const UGameInstance* GI = WorldContext->GetWorld()->GetGameInstance();
+
+	if (UAdvancedSessionSubsystem* SessionSubsystem = GI->GetSubsystem<UAdvancedSessionSubsystem>())
 	{
 		SessionSubsystem->OnSessionJoinComplete.AddUniqueDynamic(this, &UAsyncJoinSessionProxy::HandleSubsystemCallback);
 		
@@ -32,7 +36,7 @@ void UAsyncJoinSessionProxy::Activate()
 
 void UAsyncJoinSessionProxy::HandleSubsystemCallback(bool bWasSuccessful)
 {
-	if (WorldContext)
+	if (WorldContext.IsValid())
 	{
 		if (UGameInstance* GI = WorldContext->GetWorld()->GetGameInstance())
 		{

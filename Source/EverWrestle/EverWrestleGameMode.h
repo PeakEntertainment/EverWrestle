@@ -43,19 +43,19 @@ public:
 	
 	// Scoring & Progression
 	UFUNCTION(BlueprintCallable, Category = "InGame | Scoring & Progression")
-	void AddPointsForPlacement(AEverWrestleCharacter* Player, uint8 Placement);
+	void AddPointsForPlacement(APlayerController* Player, uint8 Placement);
 	UFUNCTION(BlueprintCallable, Category = "InGame | Scoring & Progression")
-	void AddPointsForKnockout(AEverWrestleCharacter* Player, uint8 Knockouts);
+	void AddPointsForKnockout(APlayerController* Player, uint8 Knockouts);
 	UFUNCTION(BlueprintCallable, Category = "InGame | Scoring & Progression")
-	void AddPointsForPlayer(AEverWrestleCharacter* TargetPlayer, int32 RewardedPoints);
+	void AddPointsForPlayer(APlayerController* TargetPlayer, int32 RewardedPoints);
 	UFUNCTION(BlueprintCallable, Category = "InGame | Scoring & Progression")
-	void SetPointsForPlayer(AEverWrestleCharacter* TargetPlayer, int32 NewPoints);
+	void SetPointsForPlayer(APlayerController* TargetPlayer, int32 NewPoints);
 	
 	// Point Management
 	UFUNCTION(BlueprintCallable, Category = "InGame | Point Management")
 	void AddPointsForEveryone(int32 RewardedPoints) const;
 	UFUNCTION(BlueprintCallable, Category = "InGame | Point Management")
-	void RemovePointsForPlayer(AEverWrestleCharacter* TargetPlayer, int32 RemovedPoints);
+	void RemovePointsForPlayer(APlayerController* TargetPlayer, int32 RemovedPoints);
 	UFUNCTION(BlueprintCallable, Category = "InGame | Point Management")
 	void RemovePointsForEveryone(int32 RemovedPoints) const;
 	UFUNCTION(BlueprintCallable, Category = "InGame | Point Management")
@@ -110,17 +110,17 @@ private:
 
 	// Data Assets
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "InGame | Scoring & Progression", meta = (AllowPrivateAccess))
-	UEverWrestleScoringData* ScoringData;
+	TObjectPtr<UEverWrestleScoringData> ScoringData;
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "InGame | Round Management", meta = (AllowPrivateAccess))
-	UEverWrestleMapData* MapData;
+	TObjectPtr<UEverWrestleMapData> MapData;
 	
 	// Internal State
 	UPROPERTY()
-	AEverWrestleGameState* CachedGameState;
+	TObjectPtr<AEverWrestleGameState> CachedGameState;
 	UPROPERTY()
-	UAdvancedSessionSubsystem* CachedAdvancedSubsystem;
+	TObjectPtr<UAdvancedSessionSubsystem> CachedAdvancedSubsystem;
 	UPROPERTY()
-	TSet<AGamePlayerController*> ReadyPlayers;
+	TSet<TObjectPtr<AGamePlayerController>> ReadyPlayers;
 
 	FTimerHandle RoundTimerHandle;
 	FTimerHandle SynchronizationTimerHandle;

@@ -46,10 +46,10 @@ private:
 
 	// Components
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "InGame | Physics & Animation", meta = (AllowPrivateAccess = "true"))
-	UStaticMeshComponent* MeshComponent;
+	TObjectPtr<UStaticMeshComponent> MeshComponent;
 
 	UPROPERTY(VisibleAnywhere, Category = "InGame | Physics & Animation", meta = (AllowPrivateAccess = "true"))
-	UTimelineComponent* MoveTimeline;
+	TObjectPtr<UTimelineComponent> MoveTimeline;
 	
 	// Configuration
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "InGame | Physics & Animation", meta = (AllowPrivateAccess = "true", MakeEditWidget))
@@ -62,7 +62,7 @@ private:
 	float PauseDuration = 1.f;
 	
 	UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "InGame | Physics & Animation", meta = (AllowPrivateAccess = "true"))
-	UCurveFloat* MoveCurve;
+	TObjectPtr<UCurveFloat> MoveCurve;
 	
 	// Replicated State
 	UPROPERTY(ReplicatedUsing = OnRep_MoveData)

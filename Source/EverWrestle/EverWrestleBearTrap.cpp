@@ -23,6 +23,8 @@ void AEverWrestleBearTrap::NotifyActorBeginOverlap(AActor* OtherActor)
 {
 	Super::NotifyActorBeginOverlap(OtherActor);
 	
+	if (!HasAuthority()) return;
+	
 	if (!bHasTrapSnapped)
 	{
 		if (IsValid(OtherActor) && OtherActor->GetClass()->ImplementsInterface(UEverWrestleCharacterInterface::StaticClass()))

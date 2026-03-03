@@ -10,12 +10,10 @@ ACheckpoint::ACheckpoint()
 	PrimaryActorTick.bCanEverTick = false;
 }
 
-void ACheckpoint::BeginPlay()
+void ACheckpoint::Server_SetPlayerCheckPoint_Implementation(AActor* Player) const
 {
-	Super::BeginPlay();
-}
-
-void ACheckpoint::SetPlayerCheckPoint_Implementation(AEverWrestleCharacter* Player) const
-{
-	Player->SetCheckpoint(GetActorLocation());
+	if (Player && Player->GetClass()->ImplementsInterface(UEverWrestleCharacterInterface::StaticClass()))
+	{
+		IEverWrestleCharacterInterface::Execute_SetPlayerCheckpoint(Player, GetActorLocation());
+	}
 }

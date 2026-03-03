@@ -24,7 +24,9 @@ void AEverWrestleHUD::SetCurrentWidget(const TSubclassOf<UUserWidget> Widget, co
 			{
 			case EInputType::UIOnly:
 				{
-					const FInputModeUIOnly InputModeUI;
+					FInputModeUIOnly InputModeUI;
+					InputModeUI.SetWidgetToFocus(CurrentGameHUD->TakeWidget());
+					InputModeUI.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
 					PC->SetInputMode(InputModeUI);
 				}
 				break;
@@ -36,7 +38,9 @@ void AEverWrestleHUD::SetCurrentWidget(const TSubclassOf<UUserWidget> Widget, co
 				break;
 			case EInputType::GameAndUI:
 				{
-					const FInputModeGameAndUI InputModeGameUI;
+					FInputModeGameAndUI InputModeGameUI;
+					InputModeGameUI.SetWidgetToFocus(CurrentGameHUD->TakeWidget());
+					InputModeGameUI.SetLockMouseToViewportBehavior(EMouseLockMode::DoNotLock);
 					PC->SetInputMode(InputModeGameUI);
 				}
 				break;
