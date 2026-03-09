@@ -30,6 +30,6 @@ private:
 	UFUNCTION()
 	void HandleSubsystemCallback(bool bWasSuccessful);
 	
-	UObject* WorldContext;
+	TWeakObjectPtr<UObject> WorldContext;
 	FBlueprintSessionResult InternalSessionToJoin;
 };

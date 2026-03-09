@@ -30,7 +30,7 @@ private:
 	UFUNCTION()
 	void HandleSubsystemCallback(const TArray<FBlueprintSessionResult>& Results, bool bWasSuccessful);
 	
-	UObject* WorldContext;
+	TWeakObjectPtr<UObject> WorldContext;
 	int32 InternalMaxResults;
 	bool InternalIsLan;
 };

@@ -15,12 +15,16 @@ UAsyncFindSessionsProxy* UAsyncFindSessionsProxy::FindSessionsAsync(UObject* Wor
 
 void UAsyncFindSessionsProxy::Activate()
 {
-	if (!WorldContext) { OnFailure.Broadcast({}); return; }
-	
-	UGameInstance* GI = WorldContext->GetWorld()->GetGameInstance();
-	UAdvancedSessionSubsystem* SessionSubsystem = GI->GetSubsystem<UAdvancedSessionSubsystem>();
-	
-	if (SessionSubsystem)
+	if (UWorld* World = WorldContext->GetWorld(); !WorldContext.IsValid() || !IsValid(World))
+	{
+		OnFailure.Broadcast({}); 
+		SetReadyToDestroy();
+		return;
+	}
+
+	const UGameInstance* GI = WorldContext->GetWorld()->GetGameInstance();
+
+	if (UAdvancedSessionSubsystem* SessionSubsystem = GI->GetSubsystem<UAdvancedSessionSubsystem>())
 	{
 		SessionSubsystem->OnSessionFindComplete.AddUniqueDynamic(this, &UAsyncFindSessionsProxy::HandleSubsystemCallback);
 		
@@ -34,7 +38,7 @@ void UAsyncFindSessionsProxy::Activate()
 
 void UAsyncFindSessionsProxy::HandleSubsystemCallback(const TArray<FBlueprintSessionResult>& Results, bool bWasSuccessful)
 {
-	if (WorldContext)
+	if (WorldContext.IsValid())
 	{
 		if (const UGameInstance* GI = WorldContext->GetWorld()->GetGameInstance())
 		{

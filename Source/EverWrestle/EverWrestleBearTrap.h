@@ -35,10 +35,10 @@ private:
 	void ResetTrap();
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "InGame | World Interaction", meta = (AllowPrivateAccess = "true"))
-	USkeletalMeshComponent* TrapMeshComponent;
+	TObjectPtr<USkeletalMeshComponent> TrapMeshComponent;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "InGame | World Interaction", meta = (AllowPrivateAccess = "true"))
-	UCapsuleComponent* TrapCollider;
+	TObjectPtr<UCapsuleComponent> TrapCollider;
 
 	UPROPERTY(Replicated, BlueprintReadOnly, Category = "InGame | World Interaction", meta = (AllowPrivateAccess = "true"))
 	bool bHasTrapSnapped = false;

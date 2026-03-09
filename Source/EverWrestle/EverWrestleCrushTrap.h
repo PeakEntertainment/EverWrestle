@@ -30,10 +30,10 @@ private:
 	void OnKnockoutEnd();
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "InGame | World Interaction", meta = (AllowPrivateAccess = "true"))
-	USkeletalMeshComponent* TrapMesh;
+	TObjectPtr<USkeletalMeshComponent> TrapMesh;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "InGame | World Interaction", meta = (AllowPrivateAccess = "true"))
-	UAnimationAsset* TrapAnimation;
+	TObjectPtr<UAnimationAsset> TrapAnimation;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "InGame | World Interaction", meta = (AllowPrivateAccess = "true"))
 	float KnockedOutDuration = 3.f;

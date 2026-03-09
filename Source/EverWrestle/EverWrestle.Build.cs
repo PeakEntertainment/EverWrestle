@@ -24,6 +24,7 @@ public class EverWrestle : ModuleRules
 			"AdvancedSessions",
 			"AdvancedSteamSessions",
 			"EngineSettings",
+			"Steamworks"
 		});
 
 		PrivateDependencyModuleNames.AddRange(new string[]

@@ -29,7 +29,7 @@ void AEverWrestleGameMode::PostInitializeComponents()
 	MAX_ROUND_TIME_IN_SECONDS = MaxRoundTime * 60;
 }
 
-void AEverWrestleGameMode::AddPointsForPlacement(AEverWrestleCharacter* Player, uint8 Placement)
+void AEverWrestleGameMode::AddPointsForPlacement(APlayerController* Player, uint8 Placement)
 {
 	if (IsValid(Player))
 	{
@@ -37,7 +37,7 @@ void AEverWrestleGameMode::AddPointsForPlacement(AEverWrestleCharacter* Player, 
 	}
 }
 
-void AEverWrestleGameMode::AddPointsForKnockout(AEverWrestleCharacter* Player, uint8 Knockouts)
+void AEverWrestleGameMode::AddPointsForKnockout(APlayerController* Player, uint8 Knockouts)
 {
 	if (IsValid(Player))
 	{
@@ -213,7 +213,7 @@ void AEverWrestleGameMode::PrepareCurrentRound()
 	ReadyPlayers.Empty();
 }
 
-void AEverWrestleGameMode::AddPointsForPlayer(AEverWrestleCharacter* TargetPlayer, const int32 RewardedPoints)
+void AEverWrestleGameMode::AddPointsForPlayer(APlayerController* TargetPlayer, const int32 RewardedPoints)
 {
 	if (AEverWrestlePlayerState* PS = TargetPlayer->GetPlayerState<AEverWrestlePlayerState>(); PS && TargetPlayer)
 	{
@@ -232,7 +232,7 @@ void AEverWrestleGameMode::AddPointsForEveryone(const int32 RewardedPoints) cons
 	}
 }
 
-void AEverWrestleGameMode::RemovePointsForPlayer(AEverWrestleCharacter* TargetPlayer, const int32 RemovedPoints)
+void AEverWrestleGameMode::RemovePointsForPlayer(APlayerController* TargetPlayer, const int32 RemovedPoints)
 {
 	if (AEverWrestlePlayerState* PS = TargetPlayer->GetPlayerState<AEverWrestlePlayerState>(); PS && TargetPlayer)
 	{
@@ -251,7 +251,7 @@ void AEverWrestleGameMode::RemovePointsForEveryone(const int32 RemovedPoints) co
 	}
 }
 
-void AEverWrestleGameMode::SetPointsForPlayer(AEverWrestleCharacter* TargetPlayer, const int32 NewPoints)
+void AEverWrestleGameMode::SetPointsForPlayer(APlayerController* TargetPlayer, const int32 NewPoints)
 {
 	if (AEverWrestlePlayerState* PS = TargetPlayer->GetPlayerState<AEverWrestlePlayerState>(); PS && TargetPlayer)
 	{

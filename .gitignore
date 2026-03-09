@@ -111,3 +111,4 @@ SourceArt/**/*.tga
 *.tmp
 *_Backup/
 Backup/
+.vsconfig

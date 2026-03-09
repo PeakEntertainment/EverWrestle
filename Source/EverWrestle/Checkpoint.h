@@ -18,8 +18,5 @@ public:
 
 	// World Interaction
 	UFUNCTION(Server, Reliable, BlueprintCallable, Category = "InGame | World Interaction")
-	void SetPlayerCheckPoint(AEverWrestleCharacter* Player) const;
-
-protected:
-	virtual void BeginPlay() override;
+	void Server_SetPlayerCheckPoint(AActor* Player) const;
 };
