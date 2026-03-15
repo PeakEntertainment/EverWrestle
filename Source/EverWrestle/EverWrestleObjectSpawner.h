@@ -3,8 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "InitiateSelfDestructInterface.h"
 #include "GameFramework/Actor.h"
+#include "InitiateSelfDestructInterface.h"
 #include "EverWrestleObjectSpawner.generated.h"
 
 class UArrowComponent;
@@ -26,18 +26,18 @@ protected:
 	virtual void BeginPlay() override;
 	
 private:
-	// World Interaction Internal
 	UFUNCTION()
 	void SpawnObjects();
-
-	// Components
+	FVector GetRandomSpawnLocationInsideCube() const;
+	FRotator GetRandomRotation() const;
+	FVector GetRandomScale(float MinObjectScale, float MaxObjectScale) const;
+	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "InGame | World Interaction", meta = (AllowPrivateAccess = "true"))
 	UBoxComponent* BoxCollider;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "InGame | World Interaction", meta = (AllowPrivateAccess = "true"))
 	UArrowComponent* Arrow;
 	
-	// Configuration
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "InGame | World Interaction", meta = (AllowPrivateAccess = "true"))
 	float SpawnInterval = 4.f;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "InGame | World Interaction", meta = (AllowPrivateAccess = "true"))
