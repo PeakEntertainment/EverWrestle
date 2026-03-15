@@ -18,7 +18,7 @@ The Player Blueprint is managing all core player mechanics, including Stamina, O
 - **[Object Spawner](Source/EverWrestle/EverWrestleObjectSpawner.cpp)** <br/>
 A flexible and reusable Object Spawner written in C++. Configure which objects get spawned, define the spawn interval, and randomize each object's transform for varied results. [(Header File)](Source/EverWrestle/EverWrestleObjectSpawner.h)
 - **[Player Animation Blueprint](https://blueprintue.com/blueprint/6in-uekd/)** <br/>
-The Animation Blueprint responsible for managing all player animations.
+The Animation Blueprint responsible for managing all player animations. Here is the [function](https://blueprintue.com/blueprint/3nqq-sqg/) responsible for updating the States.
 
 ## Built With
 - **Visual Scripting** (Blueprints)
