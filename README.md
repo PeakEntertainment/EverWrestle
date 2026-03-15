@@ -10,7 +10,7 @@ EverWrestle was created as part of a student project at [School4Games](https://w
 Play the game on [Itch.io](https://s4g.itch.io/everwrestle)!
 
 ## Responsibilities
-I worked as a Game Engineer, primarily responsible for gameplay and player aspects, such as feature implementation, sound implementation and traps (Props Spawner, Hammer etc.).
+I worked as a Game Engineer, primarily responsible for gameplay and player systems, implementing core player mechanics, integrating sound effects, and building interactive trap systems (Props Spawner, Hammer, etc.).
 
 ## Highlights
 - **[Player](https://blueprintue.com/blueprint/v_kv6y_d/)** <br/>
